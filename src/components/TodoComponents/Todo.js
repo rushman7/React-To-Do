@@ -8,7 +8,6 @@ const Todo = props => {
       {props.todo.map(item => <TodoList todo={item} key={item.id}/>)}
       <TodoForm 
         addToDo={props.addToDo} 
-        clearTodo={props.clearTodo} 
         handleChange={props.handleChange}
         value={props.value}
       />
