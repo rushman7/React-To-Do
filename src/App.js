@@ -45,8 +45,9 @@ class App extends Component {
 
   clearCompleted = e => {
     e.preventDefault()
-    let tempTodo = this.state.todo.filter(todo => todo.completed !== true)
-    this.setState({ tempTodo })
+    let tempTodo = this.state.todo.filter(todo => !todo.completed)
+    console.log(tempTodo)
+    this.setState({ todo: tempTodo })
   }
 
   clearTodo = () => {
@@ -65,6 +66,7 @@ class App extends Component {
           handleChange={this.handleChange} 
           clearCompleted={this.clearCompleted}
           clearTodo={this.clearTodo}
+          setCompleted={this.setCompleted}
         />
         <button onClick={this.clearTodo}>Clear All</button>
       </div>
