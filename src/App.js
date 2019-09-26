@@ -7,21 +7,33 @@ class App extends Component {
     this.state = {
       todo: [
         {
-          task: '',
+          task: 'Do Laundry',
           id: Date.now(),
           completed: false
         }
       ],
     }
+  }
 
-    
+  addToDo = e => {
+    const task = {
+      task: e.target.value,
+      id: Date.now(),
+      completed: false
+    }
+    this.setState({ todo: [...this.state.todo, task] })
+  }
+
+  clearTodo = () => {
+    this.setState({ todo: [] })
   }
 
   render() {
     return (
       <div>
         <h2>Todo List: MVP</h2>
-        <Todo data={this.state}/>
+        <Todo todo={this.state.todo} addToDo={this.addToDo}  clearTodo={this.clearTodo}/>
+        <button>Clear Completed</button>
       </div>
     );
   }

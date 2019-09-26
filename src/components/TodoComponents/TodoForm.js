@@ -3,7 +3,10 @@ import React from 'react';
 function TodoForm() {
   return (
     <div>
-      Todo list form.
+      <form>
+        <input type="text" placeholder="...todo"/>
+        <button>Add Todo</button>
+      </form>
     </div>
   )
 }
