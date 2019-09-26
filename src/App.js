@@ -22,6 +22,7 @@ class App extends Component {
       completed: false
     }
     this.setState({ todo: [...this.state.todo, task] })
+    console.log(this.state.todo);
   }
 
   clearTodo = () => {
