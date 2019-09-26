@@ -5,6 +5,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      value: '',
       todo: [
         {
           task: 'Do Laundry',
@@ -15,9 +16,14 @@ class App extends Component {
     }
   }
 
+  handleChange = e => {
+    this.setState({ value: e.target.value })
+  }
+
   addToDo = e => {
-    const task = {
-      task: e.target.value,
+    e.preventDefault()
+    let task = {
+      task: this.state.value,
       id: Date.now(),
       completed: false
     }
@@ -33,8 +39,13 @@ class App extends Component {
     return (
       <div>
         <h2>Todo List: MVP</h2>
-        <Todo todo={this.state.todo} addToDo={this.addToDo}  clearTodo={this.clearTodo}/>
-        <button>Clear Completed</button>
+        <Todo 
+          todo={this.state.todo} 
+          value={this.state.value}
+          addToDo={this.addToDo}  
+          clearTodo={this.clearTodo} 
+          handleChange={this.handleChange} />
+        <button>Clear All</button>
       </div>
     );
   }

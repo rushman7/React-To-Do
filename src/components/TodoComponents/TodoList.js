@@ -1,9 +1,9 @@
 import React from 'react';
 
-function TodoList() {
+const TodoList = props => {
   return (
     <div>
-      Map of List
+      <span>{props.todo.task}</span>
     </div>
   )
 }
