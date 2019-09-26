@@ -17,7 +17,8 @@ class App extends Component {
   }
 
   handleChange = e => {
-    this.setState({ value: e.target.value })
+    const newVal = e.target.value
+    this.setState({ value: newVal })
   }
 
   addToDo = e => {
@@ -28,12 +29,29 @@ class App extends Component {
     console.log(this.state.todo);
   }
 
-  clearCompleted = () => {
-    
+  setCompleted = id => {
+    let tempTodo = this.state.todo.slice();
+    tempTodo = tempTodo.map(todo => {
+      if (todo.id === id) {
+        todo.completed = !todo.completed;
+        return todo;
+      } else {
+        return todo;
+      }
+    })
+
+    this.setState({ tempTodo })
+  }
+
+  clearCompleted = e => {
+    e.preventDefault()
+    let tempTodo = this.state.todo.filter(todo => todo.completed !== true)
+    this.setState({ tempTodo })
   }
 
   clearTodo = () => {
-    this.setState({ todo: [] })
+    const clear = [];
+    this.setState({ todo: clear })
   }
 
   render() {
@@ -44,7 +62,10 @@ class App extends Component {
           todo={this.state.todo} 
           value={this.state.value}
           addToDo={this.addToDo}  
-          handleChange={this.handleChange} />
+          handleChange={this.handleChange} 
+          clearCompleted={this.clearCompleted}
+          clearTodo={this.clearTodo}
+        />
         <button onClick={this.clearTodo}>Clear All</button>
       </div>
     );
