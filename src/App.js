@@ -22,13 +22,14 @@ class App extends Component {
 
   addToDo = e => {
     e.preventDefault()
-    let task = {
-      task: this.state.value,
-      id: Date.now(),
-      completed: false
-    }
+    let task = { task: this.state.value, id: Date.now(), completed: false }
+    
     this.setState({ todo: [...this.state.todo, task] })
     console.log(this.state.todo);
+  }
+
+  clearCompleted = () => {
+    
   }
 
   clearTodo = () => {
@@ -43,9 +44,8 @@ class App extends Component {
           todo={this.state.todo} 
           value={this.state.value}
           addToDo={this.addToDo}  
-          clearTodo={this.clearTodo} 
           handleChange={this.handleChange} />
-        <button>Clear All</button>
+        <button onClick={this.clearTodo}>Clear All</button>
       </div>
     );
   }
