@@ -3,11 +3,13 @@ import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
 
 const Todo = props => {
+  let filteredSearch = props.todo.filter(todo => todo.task.indexOf(props.search) !== -1)
+
   return (
     <div>
       {
         props.todo.length > 0 ?
-        props.todo.map(item => 
+        filteredSearch.map(item => 
           <TodoList 
             todo={item} 
             key={item.id} 
