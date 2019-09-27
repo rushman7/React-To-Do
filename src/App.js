@@ -6,15 +6,33 @@ class App extends Component {
     super();
     this.state = {
       value: '',
-      todo: [
-        {
-          task: 'Do Laundry',
-          id: Date.now(),
-          completed: false
-        }
-      ],
+      todo: []
     }
   }
+
+  componentDidMount() {
+    try {
+      const json = localStorage.getItem('todo');
+      const todo = JSON.parse(json);
+
+      if (todo) {
+        this.setState(() => ({
+          todo: todo
+        }))
+      }
+    } catch (e) {
+
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.todo.length !== this.state.todo.length) {
+      const json = JSON.stringify(this.state.todo);
+      localStorage.setItem('todo', json)
+    }
+  }
+
+
 
   handleChange = e => {
     const newVal = e.target.value
