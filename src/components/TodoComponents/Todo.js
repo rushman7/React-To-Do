@@ -15,6 +15,12 @@ const Todo = props => {
           />) :
         <p>Add something to your list!</p>
       }
+      <input 
+        type="text"
+        placeholder="Search..."
+        value={props.search}
+        onChange={props.filterOnChange}
+      />
       <TodoForm 
         addToDo={props.addToDo} 
         handleChange={props.handleChange}

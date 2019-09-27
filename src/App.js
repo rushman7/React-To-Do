@@ -6,8 +6,14 @@ class App extends Component {
     super();
     this.state = {
       value: '',
-      todo: []
+      todo: [],
+      search: ''
     }
+  }
+
+  filterOnChange = (e) => {
+    this.setState({ search: e.target.value })
+    console.log(this.state.search)
   }
 
   componentDidMount() {
@@ -44,7 +50,6 @@ class App extends Component {
     let task = { task: this.state.value, id: Date.now(), completed: false }
     
     this.setState({ todo: [...this.state.todo, task] })
-    console.log(this.state.todo);
   }
 
   setCompleted = id => {
@@ -64,7 +69,6 @@ class App extends Component {
   clearCompleted = e => {
     e.preventDefault()
     let tempTodo = this.state.todo.filter(todo => !todo.completed)
-    console.log(tempTodo)
     this.setState({ todo: tempTodo })
   }
 
@@ -80,11 +84,13 @@ class App extends Component {
         <Todo 
           todo={this.state.todo} 
           value={this.state.value}
+          search={this.state.search} 
           addToDo={this.addToDo}  
           handleChange={this.handleChange} 
           clearCompleted={this.clearCompleted}
           clearTodo={this.clearTodo}
           setCompleted={this.setCompleted}
+          filterOnChange={this.filterOnChange}
         />
         <button onClick={this.clearTodo}>Clear All</button>
       </div>
